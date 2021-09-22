@@ -12,32 +12,32 @@ window.addEventListener('beforeinstallprompt', (event) => {
   window.deferredPrompt = event;
   // Remove the 'hidden' class from the install button container
   divInstall.classList.toggle('hidden', false);
-});
-
-butInstall.addEventListener('click', async () => {
-  console.log('TEST', 'butInstall-clicked');
-  const promptEvent = window.deferredPrompt;
-  if (!promptEvent) {
-    // The deferred prompt isn't available.
-    return;
-  }
-  // Show the install prompt.
-  promptEvent.prompt();
-  // Log the result
-  const result = await promptEvent.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-      deferredPrompt = null;
-    });
-  console.log('TEST', 'userChoice', result);
-  // Reset the deferred prompt variable, since
-  // prompt() can only be called once.
-  window.deferredPrompt = null;
-  // Hide the install button.
-  divInstall.classList.toggle('hidden', true);
+  
+  butInstall.addEventListener('click', async () => {
+    console.log('TEST', 'butInstall-clicked');
+    const promptEvent = window.deferredPrompt;
+    if (!promptEvent) {
+      // The deferred prompt isn't available.
+      return;
+    }
+    // Show the install prompt.
+    promptEvent.prompt();
+    // Log the result
+    const result = await promptEvent.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+    console.log('TEST', 'userChoice', result);
+    // Reset the deferred prompt variable, since
+    // prompt() can only be called once.
+    window.deferredPrompt = null;
+    // Hide the install button.
+    divInstall.classList.toggle('hidden', true);
+  });
 });
 
 window.addEventListener('appinstalled', (event) => {
