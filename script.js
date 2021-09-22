@@ -51,7 +51,7 @@ if ('serviceWorker' in navigator) {
 if (window.location.protocol === 'http:') {
   const requireHTTPS = document.getElementById('requireHTTPS');
   const link = requireHTTPS.querySelector('a');
-  link.innerHtml = "-->" + window.location.protocol + "<--";
+  link.innerHTML = "-->" + window.location.protocol + "<--";
   link.href = window.location.href.replace('http://', 'https://');
   requireHTTPS.classList.remove('hidden');
 }
