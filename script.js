@@ -5,6 +5,9 @@ const butInstall = document.getElementById('butInstall');
 /* Put code here */
 window.addEventListener('beforeinstallprompt', (event) => {
   console.log('TEST', 'beforeinstallprompt', event);
+  console.log('-->beforeinstallprompt...');
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
   // Stash the event so it can be triggered later.
   window.deferredPrompt = event;
   // Remove the 'hidden' class from the install button container
@@ -21,7 +24,14 @@ butInstall.addEventListener('click', async () => {
   // Show the install prompt.
   promptEvent.prompt();
   // Log the result
-  const result = await promptEvent.userChoice;
+  const result = await promptEvent.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
   console.log('TEST', 'userChoice', result);
   // Reset the deferred prompt variable, since
   // prompt() can only be called once.
