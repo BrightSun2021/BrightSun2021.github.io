@@ -13,7 +13,10 @@ window.addEventListener('beforeinstallprompt', (event) => {
   // Remove the 'hidden' class from the install button container
   divInstall.classList.toggle('hidden', false);
   
-  butInstall.addEventListener('click', async () => {
+  
+});
+
+butInstall.addEventListener('click', async () => {
     console.log('TEST', 'butInstall-clicked');
     const promptEvent = window.deferredPrompt;
     if (!promptEvent) {
@@ -38,7 +41,6 @@ window.addEventListener('beforeinstallprompt', (event) => {
     // Hide the install button.
     divInstall.classList.toggle('hidden', true);
   });
-});
 
 window.addEventListener('appinstalled', (event) => {
   console.log('👍', 'appinstalled', event);
