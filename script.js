@@ -4,7 +4,7 @@ const butInstall = document.getElementById('butInstall');
 //1.
 /* Put code here */
 window.addEventListener('beforeinstallprompt', (event) => {
-  console.log('👍', 'beforeinstallprompt', event);
+  console.log('TEST', 'beforeinstallprompt', event);
   // Stash the event so it can be triggered later.
   window.deferredPrompt = event;
   // Remove the 'hidden' class from the install button container
@@ -12,7 +12,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 butInstall.addEventListener('click', async () => {
-  console.log('👍', 'butInstall-clicked');
+  console.log('TEST', 'butInstall-clicked');
   const promptEvent = window.deferredPrompt;
   if (!promptEvent) {
     // The deferred prompt isn't available.
@@ -22,7 +22,7 @@ butInstall.addEventListener('click', async () => {
   promptEvent.prompt();
   // Log the result
   const result = await promptEvent.userChoice;
-  console.log('👍', 'userChoice', result);
+  console.log('TEST', 'userChoice', result);
   // Reset the deferred prompt variable, since
   // prompt() can only be called once.
   window.deferredPrompt = null;
