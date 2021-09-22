@@ -7,7 +7,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
   console.log('TEST', 'beforeinstallprompt', event);
   console.log('-->beforeinstallprompt...');
   // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
+  event.preventDefault();
   // Stash the event so it can be triggered later.
   window.deferredPrompt = event;
   // Remove the 'hidden' class from the install button container
