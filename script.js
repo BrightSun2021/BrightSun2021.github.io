@@ -49,6 +49,7 @@ if ('serviceWorker' in navigator) {
  * if the page isn't served over HTTPS, the service worker won't load.
  */
 if (window.location.protocol === 'http:') {
+  alert(window.location.protocol);
   const requireHTTPS = document.getElementById('requireHTTPS');
   const link = requireHTTPS.querySelector('a');
   link.href = window.location.href.replace('http://', 'https://');
